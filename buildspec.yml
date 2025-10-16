@@ -7,20 +7,18 @@ phases:
       - yum clean all
       - rm -f /var/run/yum.pid || true
       - yum makecache
-      - yum update -y || echo "Yum update failed but continuing..."
       - yum install -y nginx
-
 
   build:
     commands:
-      - echo "Starting Nginx..."
-      - cp index.html /var/www/html/
-  
+      - echo "Copying index.html..."
+      - cp index.html /usr/share/nginx/html/
+
   post_build:
     commands:
-    
       - echo "Build completed successfully."
 
 artifacts:
   files:
-    - /var/www/html/index.html
+    - index.html
+
