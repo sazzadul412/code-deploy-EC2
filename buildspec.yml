@@ -4,8 +4,12 @@ phases:
   install:
     commands:
       - echo "Installing Nginx..."
-      - sudo yum update -y
-      - sudo yum install -y nginx 
+      - yum clean all
+      - rm -f /var/run/yum.pid || true
+      - yum makecache
+      - yum update -y || echo "Yum update failed but continuing..."
+      - yum install -y nginx
+
 
   build:
     commands:
