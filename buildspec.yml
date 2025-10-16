@@ -9,10 +9,14 @@ phases:
       - yum makecache
       - yum install -y nginx
 
-  build:
+   build:
     commands:
-      - echo "Copying index.html..."
-      - cp index.html /usr/share/nginx/html/
+      - echo "=== BUILD PHASE ==="
+      - echo "Copying website files to /var/www/html..."
+      - mkdir -p /var/www/html
+      - cp index.html /var/www/html/
+      - echo "Listing /var/www/html contents..."
+      - ls -la /var/www/html
 
   post_build:
     commands:
