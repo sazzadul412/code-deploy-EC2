@@ -1,3 +1,4 @@
+
 version: 0.0
 os: linux
 
@@ -6,6 +7,11 @@ files:
     destination: /var/www/html
 
 hooks:
+  BeforeInstall:
+    - location: scripts/cleanup.sh
+      timeout: 180
+      runas: root
+
   AfterInstall:
     - location: scripts/install_nginx.sh
       timeout: 300
