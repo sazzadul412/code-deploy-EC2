@@ -6,16 +6,17 @@ files:
   - source: /
     destination: /var/www/html
 
-hooks:
-  BeforeInstall:
-    - location: scripts/cleanup.sh
-      timeout: 180
-      runas: root
+permissions:
+  - object: /var/www/html
+    pattern: "**"
+    owner: root
+    group: root
+    mode: 0755
+    type:
+      - file
+      - directory
 
-  AfterInstall:
-    - location: scripts/install_nginx.sh
-      timeout: 300
-      runas: root
+hooks:
 
   ApplicationStart:
     - location: scripts/start_nginx.sh
