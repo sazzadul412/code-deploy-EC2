@@ -9,7 +9,7 @@ phases:
       - yum makecache
       - yum install -y nginx
 
-   build:
+  build:
     commands:
       - echo "=== BUILD PHASE ==="
       - echo "Copying website files to /var/www/html..."
@@ -24,5 +24,6 @@ phases:
 
 artifacts:
   files:
-    - index.html
+    - /var/www/html/index.html
+
 
